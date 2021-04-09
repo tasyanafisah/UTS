@@ -1,0 +1,16 @@
+D:\Codes\UTS\bin\Debug\net5.0\UTS.exe
+D:\Codes\UTS\bin\Debug\net5.0\UTS.deps.json
+D:\Codes\UTS\bin\Debug\net5.0\UTS.runtimeconfig.json
+D:\Codes\UTS\bin\Debug\net5.0\UTS.runtimeconfig.dev.json
+D:\Codes\UTS\bin\Debug\net5.0\UTS.dll
+D:\Codes\UTS\bin\Debug\net5.0\ref\UTS.dll
+D:\Codes\UTS\bin\Debug\net5.0\UTS.pdb
+D:\Codes\UTS\obj\Debug\net5.0\UTS.csprojAssemblyReference.cache
+D:\Codes\UTS\obj\Debug\net5.0\UTS.GeneratedMSBuildEditorConfig.editorconfig
+D:\Codes\UTS\obj\Debug\net5.0\UTS.AssemblyInfoInputs.cache
+D:\Codes\UTS\obj\Debug\net5.0\UTS.AssemblyInfo.cs
+D:\Codes\UTS\obj\Debug\net5.0\UTS.csproj.CoreCompileInputs.cache
+D:\Codes\UTS\obj\Debug\net5.0\UTS.dll
+D:\Codes\UTS\obj\Debug\net5.0\ref\UTS.dll
+D:\Codes\UTS\obj\Debug\net5.0\UTS.pdb
+D:\Codes\UTS\obj\Debug\net5.0\UTS.genruntimeconfig.cache
