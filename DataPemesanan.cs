@@ -429,6 +429,10 @@ namespace UTS
                     parfait16.AddTopping(new Honeystar());
                     Console.WriteLine(parfait16.About());
                     break;
+                    
+                    default:
+                    Console.WriteLine("Pilihan menu tidak tersedia");
+                    break;
                 }
             }
         }
