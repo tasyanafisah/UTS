@@ -68,7 +68,7 @@ namespace UTS
 
         public string About()
         {
-            string strAbout = "Pesanan Es Krim\n";
+            string strAbout = "\nPesanan Es Krim\n";
             strAbout += "Nama\t\tHarga\n";
             strAbout += $"{this.ToString().Replace("UTS","")}\t{this.Harga}\n";
             strAbout += GetScoop();
