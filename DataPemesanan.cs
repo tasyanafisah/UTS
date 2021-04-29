@@ -1,40 +1,92 @@
 using System;
 using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 
 namespace UTS
 {
-    public class DataPemesanan
+    class DataPemesanan
     {
-        public static void TampilkanMenu()
-        {
-            Console.WriteLine("================ Pilihan Menu Es Krim Midnight Blue ===============");
-            Console.WriteLine("||                         a) Es Krim Cup                        ||");
-            Console.WriteLine("||     Vanila    |     Coklat    |      Oreo     |    Stroberi   ||");
-            Console.WriteLine("|| 1. Meses      | 5. Meses      | 9. Meses      | 13. Meses     ||");
-            Console.WriteLine("|| 2. Caramel    | 6. Caramel    | 10. Caramel   | 14. Caramel   ||");
-            Console.WriteLine("|| 3. Pocky      | 7. Pocky      | 11. Pocky     | 15. Pocky     ||");
-            Console.WriteLine("|| 4. Honeystar  | 8. Honeystar  | 12. Honeystar | 16. Honeystar ||");
-            Console.WriteLine("-------------------------------------------------------------------");
-            Console.WriteLine("||                        b) Es Krim Cone                        ||");
-            Console.WriteLine("||     Vanila    |     Coklat    |    Stroberi   |      Oreo     ||");
-            Console.WriteLine("|| 17. Meses     | 21. Meses     | 25. Meses     | 29. Meses     ||");
-            Console.WriteLine("|| 18. Caramel   | 22. Caramel   | 26. Caramel   | 30. Caramel   ||");
-            Console.WriteLine("|| 19. Pocky     | 23. Pocky     | 27. Pocky     | 31. Pocky     ||");
-            Console.WriteLine("|| 20. Honeystar | 24. Honeystar | 28. Honeystar | 32. Honeystar ||");
-            Console.WriteLine("-------------------------------------------------------------------");
-            Console.WriteLine("||                       c) Es Krim Parfait                      ||");
-            Console.WriteLine("||     Vanila    |     Coklat    |    Stroberi   |      Oreo     ||");
-            Console.WriteLine("|| 33. Meses     | 37. Meses     | 41. Meses     | 45. Meses     ||");
-            Console.WriteLine("|| 34. Caramel   | 38. Caramel   | 42. Caramel   | 46. Caramel   ||");
-            Console.WriteLine("|| 35. Pocky     | 39. Pocky     | 43. Pocky     | 47. Pocky     ||");
-            Console.WriteLine("|| 36. Honeystar | 40. Honeystar | 44. Honeystar | 48. Honeystar ||");
-            Console.WriteLine("-------------------------------------------------------------------");
-            Console.WriteLine("\nMasukkan menu yang dipesan: ");
+        public static void MenuEsKrim()
+        {            
+            Console.WriteLine("\nSelamat Datang di Es Krim Midnight Blue! \n");
+
+            Console.WriteLine("========================= Es Krim Midnight Blue =========================");
+            Console.WriteLine("-------------------------------------------------------------------------");
+            Console.WriteLine("============================== Daftar Harga =============================");
+            Console.WriteLine("|      Menu Es Krim       |       Rasa Eskrim      |   Topping Eskrim   |");
+            Console.WriteLine("| Es Krim Cup     : 10000 | Vanila    : 5000/scoop | Meses       : 0    |");
+            Console.WriteLine("| Es Krim Cone    : 12000 | Coklat    : 5000/scoop | Caramel     : 1000 |");
+            Console.WriteLine("| Es Krim Parfait : 15000 | Stroberi  : 5000/scoop | Pocky       : 1000 |");
+            Console.WriteLine("|                         | Oreo      : 5000/scoop | Honeystar   : 2000 |");
+            Console.WriteLine("-------------------------------------------------------------------------");
+            Console.WriteLine("\n");
+            Console.WriteLine("=========== Pilihan Menu Es Krim Midnight Blue ==========");
+            
+            connect conn = new connect();
+            using(conn.connection)
+            {
+                try
+                {
+                    conn.connection.Open();
+
+                    MySqlCommand command = conn.connection.CreateCommand();
+                    command.CommandText = System.Data.CommandType.Text.ToString();
+                    command.CommandText = "Select * from menu";
+
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                    var dat = "[No]\t[Nama Menu]\t\t[Rasa]\t\t[Topping]\n";
+
+                    if(reader.HasRows)
+                    {
+                        while(reader.Read())
+                        {
+                            dat += reader.GetInt32(0) + "\t" + reader.GetString(1) + "\t\t" + reader.GetString(2) +
+                            "\t\t" + reader.GetString(3) + Environment.NewLine;
+                        }
+                    }
+                    Console.WriteLine(dat);
+
+                    reader.Close();
+                    conn.connection.Close();
+                    Console.WriteLine("\nMasukkan menu yang dipesan: ");
+                } 
+                catch (MySql.Data.MySqlClient.MySqlException ex) 
+                {
+                    System.Console.WriteLine("Error: " + ex.Message.ToString());
+                } 
+            }
         }
+        //public static void TampilkanMenu()
+        //{
+        //    Console.WriteLine("================ Pilihan Menu Es Krim Midnight Blue ===============");
+        //    Console.WriteLine("||                         a) Es Krim Cup                        ||");
+        //    Console.WriteLine("||     Vanila    |     Coklat    |      Oreo     |    Stroberi   ||");
+        //    Console.WriteLine("|| 1. Meses      | 5. Meses      | 9. Meses      | 13. Meses     ||");
+        //    Console.WriteLine("|| 2. Caramel    | 6. Caramel    | 10. Caramel   | 14. Caramel   ||");
+        //    Console.WriteLine("|| 3. Pocky      | 7. Pocky      | 11. Pocky     | 15. Pocky     ||");
+        //    Console.WriteLine("|| 4. Honeystar  | 8. Honeystar  | 12. Honeystar | 16. Honeystar ||");
+        //    Console.WriteLine("-------------------------------------------------------------------");
+        //    Console.WriteLine("||                        b) Es Krim Cone                        ||");
+        //    Console.WriteLine("||     Vanila    |     Coklat    |    Stroberi   |      Oreo     ||");
+        //    Console.WriteLine("|| 17. Meses     | 21. Meses     | 25. Meses     | 29. Meses     ||");
+        //    Console.WriteLine("|| 18. Caramel   | 22. Caramel   | 26. Caramel   | 30. Caramel   ||");
+        //    Console.WriteLine("|| 19. Pocky     | 23. Pocky     | 27. Pocky     | 31. Pocky     ||");
+        //    Console.WriteLine("|| 20. Honeystar | 24. Honeystar | 28. Honeystar | 32. Honeystar ||");
+        //    Console.WriteLine("-------------------------------------------------------------------");
+        //    Console.WriteLine("||                       c) Es Krim Parfait                      ||");
+        //    Console.WriteLine("||     Vanila    |     Coklat    |    Stroberi   |      Oreo     ||");
+        //    Console.WriteLine("|| 33. Meses     | 37. Meses     | 41. Meses     | 45. Meses     ||");
+        //    Console.WriteLine("|| 34. Caramel   | 38. Caramel   | 42. Caramel   | 46. Caramel   ||");
+        //    Console.WriteLine("|| 35. Pocky     | 39. Pocky     | 43. Pocky     | 47. Pocky     ||");
+        //    Console.WriteLine("|| 36. Honeystar | 40. Honeystar | 44. Honeystar | 48. Honeystar ||");
+        //    Console.WriteLine("-------------------------------------------------------------------");
+        //    Console.WriteLine("\nMasukkan menu yang dipesan: ");
+        //}
         public string PesananMasuk()
         {
             string pilihanMenu = "";
-            TampilkanMenu();
+            MenuEsKrim();
             var pesanan = Console.ReadLine();
 
             switch(pesanan)
